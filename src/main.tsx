@@ -1,29 +1,35 @@
-import { memo, useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { LazyMotion, MotionConfig, domAnimation, useReducedMotion } from 'motion/react'
+import { LazyMotion, MotionConfig, domAnimation, useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
+import * as m from 'motion/react-m'
 import '@fontsource-variable/golos-text'
 import '@fontsource/barlow-condensed/latin-700-italic.css'
 import '@fontsource/barlow-condensed/latin-800-italic.css'
-import * as m from 'motion/react-m'
 import { isUpcoming, season } from './calendar'
-import { DriverProfile, Garage, MediaPhoto, teamLink } from './Garage'
+import { DriverProfile, Garage, teamLink, type TeamStanding } from './Garage'
+import { HeroMedia, heroVideoCredit, previewMode, previewUrl } from './HeroMedia'
 import { ApexMark, Icon } from './icons'
 import { media, mediaUrl } from './media'
 import { NextRace, Schedule } from './Schedule'
+import { parseStandings, type Participant } from './sport'
+import { Standings } from './Standings'
+import { useResource } from './useResource'
+import { trackArchiveSource, trackGeoSource } from './track-data'
 import { driversSource, driversTitleSource, editorialDate, teams, teamTitleSource, type Team } from './teams'
 import { useSchedule } from './useSchedule'
 import './styles.css'
+import './cinematic.css'
+import './timing.css'
 
-const videoCredit = media['warm-up.mp4']
-const heroPhoto = 'hero.webp'
 const repository = 'https://github.com/ROMPEL2000/apex-f1'
+const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
 
-function getRoute() {
+function readRoute() {
   const [section, teamId, driverId] = location.hash.slice(1).split('/')
   return { section, teamId, driverId }
 }
 
-function Modal({ children, close, wide = false }: { children: ReactNode; close: () => void; wide?: boolean }) {
+function Modal({ children, close }: { children: ReactNode; close: () => void }) {
   const element = useRef<HTMLDialogElement>(null)
   const callback = useRef(close)
   callback.current = close
@@ -36,7 +42,7 @@ function Modal({ children, close, wide = false }: { children: ReactNode; close: 
       if (wasFocused instanceof HTMLElement && wasFocused !== document.body) wasFocused.focus({ preventScroll: true })
     }
   }, [])
-  return <dialog ref={element} className={wide ? 'dialog video-dialog' : 'dialog'} aria-labelledby="dialog-title"
+  return <dialog ref={element} className="dialog" aria-labelledby="dialog-title"
     onCancel={event => { event.preventDefault(); callback.current() }}
     onClick={event => { if (event.target === event.currentTarget) callback.current() }}>
     <div className="dialog-inner">
@@ -44,18 +50,6 @@ function Modal({ children, close, wide = false }: { children: ReactNode; close: 
       {children}
     </div>
   </dialog>
-}
-
-function Film() {
-  const [failed, setFailed] = useState(false)
-  const reduce = useReducedMotion()
-  return <div className="film">
-    <div className="film-heading"><p className="eyebrow">Сочи / 2021</p><h2 id="dialog-title">Прогревочный круг</h2></div>
-    {failed || !videoCredit
-      ? <div className="video-fallback"><MediaPhoto file={heroPhoto} alt="" eager /><p>Ролик временно недоступен. <a href={videoCredit?.source}>Открыть оригинал на Wikimedia Commons</a></p></div>
-      : <video src={mediaUrl('warm-up.mp4')} poster={mediaUrl('warm-up-poster.webp')} autoPlay={!reduce} muted playsInline controls preload="metadata" onError={() => setFailed(true)} aria-label="Выезд болидов Formula 1 на прогревочный круг в Сочи" />}
-    {videoCredit && <p className="film-credit"><a href={videoCredit.source}>Съёмка {videoCredit.author}</a> · <a href={videoCredit.licenseUrl}>{videoCredit.license}</a> · {videoCredit.changes}</p>}
-  </div>
 }
 
 const Credits = memo(function Credits() {
@@ -68,11 +62,14 @@ const Credits = memo(function Credits() {
     <details id="credits">
       <summary>Источники и авторство</summary>
       <div className="credits-body">
-        <p>Составы, статистика и титулы сверены {editorialDate}. Названия и товарные знаки принадлежат их владельцам.</p>
+        <p>Составы и титулы сверены {editorialDate}. Названия и товарные знаки принадлежат их владельцам.</p>
         <ul className="credits-sources">
           <li><a href={driversSource}>Составы пилотов Formula 1</a></li>
           <li><a href={driversTitleSource}>Личный титул 2026</a></li>
           <li><a href={teamTitleSource}>Кубок конструкторов 2026</a></li>
+          <li>Схемы трасс · <a href={trackArchiveSource}>Jules Roy / F1DB</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
+          <li>Геометрия Имолы и Сепанга · <a href={trackGeoSource}>Tomislav Bacinger</a> · MIT</li>
+          {heroVideoCredit && <li>Фоновый ролик <a href={heroVideoCredit.source}>{heroVideoCredit.author}</a>{heroVideoCredit.licenseUrl && <> · <a href={heroVideoCredit.licenseUrl}>{heroVideoCredit.license}</a></>}</li>}
         </ul>
         <ul className="media-list">{Object.values(media).map(item => <li key={item.file}>
           <a href={item.source}>{item.title}</a><small>{item.author || 'Автор указан в карточке файла'} · {item.licenseUrl ? <a href={item.licenseUrl}>{item.license}</a> : item.license} · {item.changes}</small>
@@ -82,103 +79,169 @@ const Credits = memo(function Credits() {
   </div>
 })
 
-function App() {
-  const [route, setRoute] = useState(getRoute)
-  const [direction, setDirection] = useState(1)
-  const [film, setFilm] = useState(false)
-  const [trackTime, setTrackTime] = useState(false)
+function LiveNextRace({ state, trackTime }: { state: ReturnType<typeof useSchedule>; trackTime: boolean }) {
   const [now, setNow] = useState(Date.now)
+  const current = state.races.find(race => isUpcoming(race, now))
+  const next = useSchedule(state.races.length && !current ? state.year + 1 : 0)
+  const upcoming = current ?? next.races.find(race => isUpcoming(race, now))
+  useEffect(() => {
+    const tick = () => setNow(Date.now())
+    const timer = window.setInterval(tick, 1000)
+    document.addEventListener('visibilitychange', tick)
+    return () => {
+      window.clearInterval(timer)
+      document.removeEventListener('visibilitychange', tick)
+    }
+  }, [])
+  return <NextRace race={upcoming} now={now} loading={state.status === 'loading' || Boolean(state.races.length && !current && next.status === 'loading')} zone={trackTime && upcoming?.zone ? upcoming.zone : localZone} />
+}
+
+function App() {
+  const reveal = useRef<HTMLElement>(null)
+  const overviewHeading = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
-  const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
-  const visitorYear = Number(new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: localZone }).format(now))
-  const currentYearCalendar = useSchedule(Math.max(season, visitorYear))
-  const [calendarYear, setCalendarYear] = useState<number>()
-  const primaryUpcoming = currentYearCalendar.races.find(race => isUpcoming(race, now))
-  const seasonFinished = currentYearCalendar.races.length > 0 && !primaryUpcoming
-  const nextYear = currentYearCalendar.year + 1
-  const nextCalendar = useSchedule(seasonFinished ? nextYear : 0)
-  const manuallySelected = calendarYear !== undefined && calendarYear !== currentYearCalendar.year
-  const auxiliaryCalendar = useSchedule(manuallySelected && (!seasonFinished || calendarYear !== nextYear) ? calendarYear : 0)
-  const state = manuallySelected ? (calendarYear === nextCalendar.year ? nextCalendar : auxiliaryCalendar) : currentYearCalendar
-  const upcoming = primaryUpcoming ?? nextCalendar.races.find(race => isUpcoming(race, now))
-  const activeTeam = teams.find(team => team.id === route.teamId) ?? teams[0]
-  const driver = activeTeam.drivers.find(item => item.id === route.driverId)
+  const { scrollYProgress } = useScroll({ target: reveal, offset: ['start end', 'start 64%'] })
+  const markOpacity = useTransform(scrollYProgress, [0, .24, .92], [1, .93, 0])
+  const navY = useTransform(scrollYProgress, [0, .36], [22, 0])
+  const { scrollYProgress: headingProgress } = useScroll({ target: overviewHeading, offset: ['start end', 'start 73%'] })
+  const introProgress = useSpring(headingProgress, { stiffness: 115, damping: 23, skipInitialAnimation: true })
+  const kickerOpacity = useTransform(introProgress, [.15, .48], [0, 1])
+  const titleY = useTransform(introProgress, [.26, .88], [42, 0])
+  const titleOpacity = useTransform(introProgress, [.26, .78], [0, 1])
+  const actionsY = useTransform(introProgress, [.4, .97], [29, 0])
+  const detailOpacity = useTransform(introProgress, [.36, .88], [.25, 1])
+  const [route, setRoute] = useState(readRoute)
+  const [trackTime, setTrackTime] = useState(false)
+  const currentYear = Math.max(season, new Date().getFullYear())
+  const [year, setYear] = useState(currentYear)
+  const [archivedDriver, setArchivedDriver] = useState<{ person: Participant; teams: Participant[]; year: number }>()
+  const liveCalendar = useSchedule(currentYear)
+  const selectedCalendar = useSchedule(currentYear === year ? 0 : year)
+  const calendar = currentYear === year ? liveCalendar : selectedCalendar
+  const seasons = Array.from(new Set([Math.max(2027, currentYear), 2027, 2026, 2025])).sort((a, b) => b - a)
+  const readDrivers = useCallback((payload: unknown) => parseStandings(payload, year, 'drivers'), [year])
+  const readTeams = useCallback((payload: unknown) => parseStandings(payload, year, 'constructors'), [year])
+  const drivers = useResource(year, 'driverstandings', readDrivers)
+  const constructors = useResource(year, 'constructorstandings', readTeams)
+  const teamStandings = useMemo(() => new Map<string, TeamStanding>(
+    constructors.data?.rows.map(row => [row.participant.id, row]) ?? [],
+  ), [constructors.data])
+  const activeTeam = teams.find(team => team.id === route.teamId)
+  const driver = activeTeam?.drivers.find(item => item.id === route.driverId)
 
   useEffect(() => {
-    const syncRoute = () => setRoute(getRoute())
-    const syncTime = () => setNow(Date.now())
-    const ticker = window.setInterval(syncTime, 1000)
+    const syncRoute = () => setRoute(readRoute())
+    const initialHash = location.hash
+    const initial = readRoute()
+    const initialAnchor = initial.section === 'teams' && initial.teamId ? 'teams/' + initial.teamId : initial.section
+    const restoreInitialAnchor = () => {
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (location.hash === initialHash && initialAnchor) {
+          document.getElementById(initialAnchor)?.scrollIntoView({ behavior: 'instant' })
+        }
+      }))
+    }
+    restoreInitialAnchor()
+    if (document.readyState !== 'complete') window.addEventListener('load', restoreInitialAnchor, { once: true })
     window.addEventListener('hashchange', syncRoute)
     window.addEventListener('popstate', syncRoute)
-    document.addEventListener('visibilitychange', syncTime)
-    if (getRoute().section === 'teams') document.getElementById('teams')?.scrollIntoView({ behavior: 'instant' })
     return () => {
-      window.clearInterval(ticker)
+      window.removeEventListener('load', restoreInitialAnchor)
       window.removeEventListener('hashchange', syncRoute)
       window.removeEventListener('popstate', syncRoute)
-      document.removeEventListener('visibilitychange', syncTime)
     }
   }, [])
 
-  const navigate = useCallback((team: Team, offset = 1, driverId?: string) => {
+  const navigate = useCallback((team: Team, driverId?: string) => {
     const url = teamLink(team, driverId)
-    setDirection(offset)
-    if (location.hash !== url) {
-      history.pushState(driverId ? { apexDriver: true } : null, '', url)
-      setRoute(getRoute())
+    if (location.hash === url) {
+      if (!driverId) document.getElementById(url.slice(1))?.scrollIntoView()
+      return
     }
+    const previousTeam = readRoute().teamId
+    history.pushState(driverId ? { apexDriver: true } : null, '', url)
+    setRoute(readRoute())
+    if (!driverId || previousTeam !== team.id) document.getElementById(teamLink(team).slice(1))?.scrollIntoView()
   }, [])
+
+  const onDriver = useCallback((person: Participant, teamsAtEvent: Participant[], season: number) => {
+    const team = teams.find(item => item.drivers.some(driver => driver.id === person.id))
+    if (team) navigate(team, person.id)
+    else setArchivedDriver({ person, teams: teamsAtEvent, year: season })
+  }, [navigate])
+
+  const onTeam = useCallback((id: string) => {
+    const team = teams.find(item => item.id === id)
+    if (!team) return false
+    navigate(team)
+    return true
+  }, [navigate])
 
   function closeDriver() {
     if (history.state?.apexDriver) {
       history.back()
-    } else {
+    } else if (activeTeam) {
       history.replaceState(null, '', teamLink(activeTeam))
-      setRoute(getRoute())
+      setRoute(readRoute())
     }
   }
 
   return <MotionConfig reducedMotion="user"><LazyMotion features={domAnimation} strict>
     <a className="skip" href="#content">Перейти к содержанию</a>
-    <header className="site-header" id="top">
-      <div className="wrap navigation">
+    <section className="opening" id="top" aria-label="Заставка Formula 1">
+      <HeroMedia />
+      <div className="opening-shade" aria-hidden="true" />
+      <m.div className="opening-mark" style={reduce ? undefined : { opacity: markOpacity }}>
+        {previewMode && <img className="opening-logo" src={previewUrl('f1-mark.svg')} alt="Логотип F1"
+          onError={event => { event.currentTarget.hidden = true }} />}
+        <span className="opening-wordmark large-type">FORMULA 1</span>
+      </m.div>
+    </section>
+    <header className="site-header" ref={reveal}>
+      <m.div className="wrap navigation" style={reduce ? undefined : { y: navY }}>
         <a className="brand" href="#top" aria-label="APEX, главная"><ApexMark /><span>APEX</span></a>
-        <nav aria-label="Основная навигация"><a href="#calendar">Календарь</a><a href="#teams">Команды</a></nav>
-        <a className="nav-season" href="#calendar"><span /> Сезон {currentYearCalendar.year}</a>
-      </div>
+        <nav aria-label="Основная навигация">
+          <a href="#teams">Команды</a><a href="#calendar">Календарь</a><a href="#drivers">Личный зачёт</a><a href="#constructors">Конструкторы</a><a href="#results">Результаты</a>
+        </nav>
+        <span className="nav-season"><span /> {currentYear}</span>
+      </m.div>
     </header>
     <main id="content">
-      <section className="hero" aria-labelledby="hero-title">
-        <MediaPhoto file={heroPhoto} className="hero-image" alt="" eager />
-        <div className="hero-scrim" />
-        <div className="hero-lanes" aria-hidden="true"><i /><i /><i /></div>
-        <div className="wrap hero-inner">
-          <m.div className="hero-copy" initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduce ? 0 : 0.6 }}>
-            <p className="hero-kicker"><i /> Независимый гид по сезону</p>
-            <h1 id="hero-title">FORMULA<span> 1</span></h1>
-            <p className="hero-description">От старта до клетчатого флага. Расписание гонок, команды и пилоты Формулы-1.</p>
-            <div className="hero-actions">
-              <a className="primary-button" href="#calendar" onClick={() => setCalendarYear(seasonFinished ? nextYear : undefined)}>Смотреть расписание <Icon name="down" size={18} /></a>
-              <button className="film-button" type="button" onClick={() => setFilm(true)}><span><Icon name="play" size={17} /></span> Смотреть видео</button>
+      <section className="hero-overview" aria-labelledby="hero-title">
+        <img className="overview-photo" src={mediaUrl('overview-vegas-1920.webp')} alt="" width="1920" height="1080"
+          srcSet={[960, 1920, 3840].map(width => mediaUrl('overview-vegas-' + width + '.webp') + ' ' + width + 'w').join(', ')}
+          sizes="(max-width: 680px) 100vw, 80vw" loading="lazy" decoding="async" />
+        <div className="wrap overview-layout">
+          <div>
+            <div ref={overviewHeading} className="overview-heading">
+              <m.p className="index-label" style={reduce ? undefined : { opacity: kickerOpacity }}><i /> Независимый гид по сезону</m.p>
+              <m.h1 id="hero-title" className="large-type" style={reduce ? undefined : { y: titleY, opacity: titleOpacity }}>FORMULA<span> 1</span></m.h1>
             </div>
-          </m.div>
-          <div className="hero-bottom">
-            <NextRace race={upcoming} now={now} loading={currentYearCalendar.status === 'loading' || (seasonFinished && nextCalendar.status === 'loading')} zone={trackTime && upcoming?.zone ? upcoming.zone : localZone} />
-            <div className="hero-index" aria-hidden="true"><span /><span /><span /><span /><span /></div>
+            <m.div className="hero-actions" style={reduce ? undefined : { y: actionsY }}>
+              <a className="primary-button" href="#teams">Команды <Icon name="down" size={18} /></a>
+              <a className="secondary-button" href="#calendar" onClick={() => setYear(currentYear)}>Расписание <Icon name="arrow" size={17} /></a>
+            </m.div>
           </div>
+          <m.div className="overview-timing" style={reduce ? undefined : { y: actionsY, opacity: detailOpacity }}>
+            <LiveNextRace state={liveCalendar} trackTime={trackTime} />
+          </m.div>
         </div>
       </section>
-      <Schedule state={state} now={now} localZone={localZone} trackTime={trackTime} onZoneChange={setTrackTime} />
-      <div className="season-links"><div className="wrap">
-        <button type="button" className="text-btn" onClick={() => { setCalendarYear(manuallySelected ? undefined : currentYearCalendar.year === season ? season + 1 : season); document.getElementById('calendar')?.scrollIntoView() }}>
-          {manuallySelected ? 'Вернуться к сезону ' + currentYearCalendar.year : 'Календарь ' + (currentYearCalendar.year === season ? season + 1 : season)} <Icon name="arrow" size={17} />
-        </button>
-      </div></div>
-      <Garage team={activeTeam} direction={direction} navigate={navigate} />
+      <Garage year={year} standings={teamStandings} navigate={navigate} />
+      <Schedule state={calendar} localZone={localZone} trackTime={trackTime} onZoneChange={setTrackTime}
+        resultsView={route.section === 'results'} latestRound={Math.max(drivers.data?.round ?? 0, constructors.data?.round ?? 0)}
+        seasons={seasons} changeSeason={setYear} onDriver={onDriver} />
+      <Standings view={route.section === 'constructors' ? 'constructors' : 'drivers'} year={year}
+        calendar={calendar.races} seasons={seasons} changeSeason={setYear} zone={localZone} drivers={drivers} constructors={constructors} onDriver={onDriver} onTeam={onTeam} />
     </main>
     <footer className="site-footer"><Credits /></footer>
-    {film && <Modal close={() => setFilm(false)} wide><Film /></Modal>}
-    {driver && <Modal close={closeDriver}><DriverProfile team={activeTeam} driverId={driver.id} /></Modal>}
+    {archivedDriver && <Modal close={() => setArchivedDriver(undefined)}><div className="profile-copy archived-profile">
+      <p className="index-label">Пилот · {archivedDriver.year}</p>
+      <h2 id="dialog-title">{archivedDriver.person.name}</h2>
+      <p>{archivedDriver.teams.map(team => team.name).join(' / ') || 'Команда не указана в классификации'}</p>
+      {archivedDriver.person.url && <a className="source-link" href={archivedDriver.person.url}>Биография <Icon name="external" size={15} /></a>}
+    </div></Modal>}
+    {activeTeam && driver && <Modal close={closeDriver}><DriverProfile team={activeTeam} driverId={driver.id} /></Modal>}
   </LazyMotion></MotionConfig>
 }
 

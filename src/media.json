@@ -403,5 +403,14 @@
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "source": "https://commons.wikimedia.org/wiki/File:2021_Russian_Grand_Prix_-_start_for_warm-up.webm",
     "title": "2021 Russian Grand Prix - start for warm-up.webm"
+  },
+  "overview-vegas-3840.webp": {
+    "author": "DHSgov",
+    "changes": "Кадрирование 16:9 и оптимизация WebP из оригинала 7000 × 4667",
+    "file": "overview-vegas-3840.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Las_Vegas_Grand_Prix_(54941206417).jpg",
+    "title": "Las Vegas Grand Prix (54941206417).jpg"
   }
 }

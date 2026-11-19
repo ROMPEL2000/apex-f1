@@ -21,13 +21,3 @@ export function Icon({ name, size = 20 }: { name: Name; size?: number }) {
 export function ApexMark() {
   return <svg aria-hidden="true" width="33" height="27" viewBox="0 0 36 28"><path fill="currentColor" d="M0 27 13 1h9L9 27zm15 0L28 1h8L23 27z" /></svg>
 }
-
-export function CircuitGraphic() {
-  return <svg className="circuit-graphic" aria-hidden="true" width="370" height="220" viewBox="0 0 370 220" fill="none">
-    <path d="M-15 195h400M-15 155h400M-15 115h400M-15 75h400M-15 35h400M30 0v220M70 0v220M110 0v220M150 0v220M190 0v220M230 0v220M270 0v220M310 0v220M350 0v220" stroke="currentColor" opacity=".12" />
-    <path d="m48 155 51-1 21-20 84-1 12-9 1-13 45-1 5 12 36-1 14-14V66L79 65 62 79v19l-17 15 3 42Z" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" opacity=".36" />
-    <path d="m62 98-17 15 3 42 51-1 21-20" stroke="var(--red)" strokeWidth="4" strokeLinejoin="round" />
-    <circle cx="78" cy="155" r="6" fill="var(--red)" />
-  </svg>
-}
-

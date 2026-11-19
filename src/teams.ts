@@ -1,6 +1,5 @@
 export const editorialDate = '19 ноября 2026'
 export const driversSource = 'https://www.formula1.com/en/drivers'
-export const standingSource = 'https://www.formula1.com/en/results/2026/team'
 export const driversTitleSource = 'https://www.formula1.com/en/latest/article/antonelli-crowned-youngest-ever-f1-champion-as-verstappen-wins-eventful-mexico-city-grand-prix.xpMMeef0KmRURs9IDs3LH'
 export const teamTitleSource = 'https://www.formula1.com/en/latest/article/norris-beats-verstappen-in-wet-sao-paulo-gp-thriller-as-mercedes-win-constructors-championship.7JN7MXLZf5lk5l0C3gfKGI'
 
@@ -27,7 +26,6 @@ export interface Team {
   scene: string
   base: string
   car: string
-  points: number
   history: string
   fact: string
   drivers: [Driver, Driver]
@@ -37,7 +35,7 @@ export interface Team {
 
 export const teams: Team[] = [
   {
-    id: 'mercedes', label: 'Mercedes', name: 'Mercedes-AMG Petronas F1 Team', mark: 'AMG', accent: '#54f6d3', scene: '#08282b', base: 'Бракли, Великобритания', car: 'W17', points: 652,
+    id: 'mercedes', label: 'Mercedes', name: 'Mercedes-AMG Petronas F1 Team', mark: 'AMG', accent: '#54f6d3', scene: '#08282b', base: 'Бракли, Великобритания', car: 'W17',
     history: 'Заводская команда Mercedes вернулась на решётку в 2010 году после покупки Brawn GP. В гибридную эпоху она выиграла восемь Кубков конструкторов подряд, с 2014 по 2021 год, а в 2026-м взяла девятый.',
     fact: 'Mercedes оформил Кубок конструкторов 2026 в Сан-Паулу, за три этапа до конца сезона.',
     drivers: [
@@ -47,7 +45,7 @@ export const teams: Team[] = [
     source: 'mercedes', champion: 2026,
   },
   {
-    id: 'ferrari', label: 'Ferrari', name: 'Scuderia Ferrari HP', mark: 'SF', accent: '#ff775c', scene: '#3e1118', base: 'Маранелло, Италия', car: 'SF-26', points: 510,
+    id: 'ferrari', label: 'Ferrari', name: 'Scuderia Ferrari HP', mark: 'SF', accent: '#ff775c', scene: '#3e1118', base: 'Маранелло, Италия', car: 'SF-26',
     history: 'Scuderia выступает в чемпионате мира с 1950 года. Команда выиграла 16 Кубков конструкторов, включая серию из шести подряд с 1999 по 2004 год.',
     fact: 'Первую победу Ferrari в чемпионате мира принёс Хосе Фройлан Гонсалес на Гран-при Великобритании 1951 года.',
     drivers: [
@@ -57,7 +55,7 @@ export const teams: Team[] = [
     source: 'ferrari',
   },
   {
-    id: 'red-bull', label: 'Red Bull Racing', name: 'Oracle Red Bull Racing', mark: 'RBR', accent: '#8da4ff', scene: '#131b45', base: 'Милтон-Кинс, Великобритания', car: 'RB22', points: 415,
+    id: 'red-bull', label: 'Red Bull Racing', name: 'Oracle Red Bull Racing', mark: 'RBR', accent: '#8da4ff', scene: '#131b45', base: 'Милтон-Кинс, Великобритания', car: 'RB22',
     history: 'Red Bull купил Jaguar Racing и вышел на старт под собственным именем в 2005 году. Команда взяла четыре Кубка конструкторов подряд в 2010–2013 годах и ещё два в 2022–2023-м.',
     fact: 'Себастьян Феттель принёс Red Bull первую победу в Гран-при Китая 2009 года.',
     drivers: [
@@ -67,7 +65,7 @@ export const teams: Team[] = [
     source: 'red-bull-racing',
   },
   {
-    id: 'mclaren', label: 'McLaren', name: 'McLaren Mastercard Formula 1 Team', mark: 'McL', accent: '#ffad52', scene: '#412106', base: 'Уокинг, Великобритания', car: 'MCL40', points: 398,
+    id: 'mclaren', label: 'McLaren', name: 'McLaren Mastercard Formula 1 Team', mark: 'McL', accent: '#ffad52', scene: '#412106', base: 'Уокинг, Великобритания', car: 'MCL40',
     history: 'Брюс Макларен основал команду в 1963 году, а её дебют в F1 состоялся в 1966-м. McLaren выиграл десять Кубков конструкторов, включая сезоны 2024 и 2025.',
     fact: 'В 1988 году Айртон Сенна и Ален Прост выиграли 15 из 16 Гран-при на McLaren MP4/4.',
     drivers: [
@@ -77,7 +75,7 @@ export const teams: Team[] = [
     source: 'mclaren',
   },
   {
-    id: 'racing-bulls', label: 'Racing Bulls', name: 'Visa Cash App Racing Bulls Formula One Team', mark: 'VCARB', accent: '#a8baff', scene: '#182750', base: 'Фаэнца, Италия', car: 'VCARB 03', points: 114,
+    id: 'racing-bulls', label: 'Racing Bulls', name: 'Visa Cash App Racing Bulls Formula One Team', mark: 'VCARB', accent: '#a8baff', scene: '#182750', base: 'Фаэнца, Италия', car: 'VCARB 03',
     history: 'Проект в Фаэнце вырос из Minardi. После покупки Red Bull команда выступала как Toro Rosso, затем как AlphaTauri и RB, прежде чем принять имя Racing Bulls.',
     fact: 'Обе победы предшественников пришлись на Монцу. В 2008-м выиграл Toro Rosso с Себастьяном Феттелем, в 2020-м — AlphaTauri с Пьером Гасли.',
     drivers: [
@@ -87,7 +85,7 @@ export const teams: Team[] = [
     source: 'racing-bulls',
   },
   {
-    id: 'alpine', label: 'Alpine', name: 'BWT Alpine Formula One Team', mark: 'A', accent: '#ff8bc8', scene: '#322143', base: 'Энстон, Великобритания', car: 'A526', points: 69,
+    id: 'alpine', label: 'Alpine', name: 'BWT Alpine Formula One Team', mark: 'A', accent: '#ff8bc8', scene: '#322143', base: 'Энстон, Великобритания', car: 'A526',
     history: 'Имя Alpine появилось в F1 в 2021 году при переименовании заводской команды Renault. База в Энстоне также связана с Benetton и Lotus. Renault выиграла Кубок конструкторов в 2005 и 2006 годах.',
     fact: 'Первую победу под именем Alpine принёс Эстебан Окон на Гран-при Венгрии 2021 года.',
     drivers: [
@@ -97,7 +95,7 @@ export const teams: Team[] = [
     source: 'alpine',
   },
   {
-    id: 'haas', label: 'Haas', name: 'TGR Haas F1 Team', mark: 'H', accent: '#ff8e92', scene: '#311a28', base: 'Каннаполис, США', car: 'VF-26', points: 31,
+    id: 'haas', label: 'Haas', name: 'TGR Haas F1 Team', mark: 'H', accent: '#ff8e92', scene: '#311a28', base: 'Каннаполис, США', car: 'VF-26',
     history: 'Команда Джина Хааса дебютировала в 2016 году. Её лучший командный результат — пятое место в Кубке конструкторов 2018 года.',
     fact: 'В первой же гонке Haas заработал очки: Ромен Грожан финишировал шестым в Австралии в 2016 году.',
     drivers: [
@@ -107,7 +105,7 @@ export const teams: Team[] = [
     source: 'haas',
   },
   {
-    id: 'audi', label: 'Audi', name: 'Audi Revolut F1 Team', mark: 'AUDI', accent: '#ffa08a', scene: '#302327', base: 'Хинвиль, Швейцария', car: 'R26', points: 28,
+    id: 'audi', label: 'Audi', name: 'Audi Revolut F1 Team', mark: 'AUDI', accent: '#ffa08a', scene: '#302327', base: 'Хинвиль, Швейцария', car: 'R26',
     history: 'Audi дебютировала как заводская команда в 2026 году после приобретения Sauber. Швейцарская база продолжила работу над шасси, а силовую установку разработала Audi в Нойбурге.',
     fact: 'Победа Роберта Кубицы в Канаде в 2008 году относится к BMW Sauber, предшественнику проекта Audi.',
     drivers: [
@@ -117,7 +115,7 @@ export const teams: Team[] = [
     source: 'audi',
   },
   {
-    id: 'williams', label: 'Williams', name: 'Atlassian Williams F1 Team', mark: 'W', accent: '#8dc3ff', scene: '#102b4c', base: 'Гроув, Великобритания', car: 'FW48', points: 12,
+    id: 'williams', label: 'Williams', name: 'Atlassian Williams F1 Team', mark: 'W', accent: '#8dc3ff', scene: '#102b4c', base: 'Гроув, Великобритания', car: 'FW48',
     history: 'Фрэнк Уильямс и Патрик Хэд основали Williams Grand Prix Engineering в 1977 году. Команда выиграла девять Кубков конструкторов, последний — в 1997 году.',
     fact: 'Первый Кубок конструкторов Williams взял в 1980-м, когда Алан Джонс выиграл и личный зачёт.',
     drivers: [
@@ -127,7 +125,7 @@ export const teams: Team[] = [
     source: 'williams',
   },
   {
-    id: 'aston-martin', label: 'Aston Martin', name: 'Aston Martin Aramco Formula One Team', mark: 'AM', accent: '#b8e77a', scene: '#122d23', base: 'Сильверстоун, Великобритания', car: 'AMR26', points: 7,
+    id: 'aston-martin', label: 'Aston Martin', name: 'Aston Martin Aramco Formula One Team', mark: 'AM', accent: '#b8e77a', scene: '#122d23', base: 'Сильверстоун, Великобритания', car: 'AMR26',
     history: 'Современный Aston Martin появился в 2021 году после переименования Racing Point. История этого коллектива в Сильверстоуне восходит к Jordan, дебютировавшей в 1991-м.',
     fact: 'Победа Серхио Переса в Сахире в 2020-м была одержана под именем Racing Point.',
     drivers: [
@@ -137,7 +135,7 @@ export const teams: Team[] = [
     source: 'aston-martin',
   },
   {
-    id: 'cadillac', label: 'Cadillac', name: 'Cadillac Formula 1 Team', mark: 'CAD', accent: '#eacc91', scene: '#302725', base: 'Сильверстоун, Великобритания', car: 'MAC-26', points: 0,
+    id: 'cadillac', label: 'Cadillac', name: 'Cadillac Formula 1 Team', mark: 'CAD', accent: '#eacc91', scene: '#302725', base: 'Сильверстоун, Великобритания', car: 'MAC-26',
     history: 'Cadillac вышла на старт в 2026-м как новая, одиннадцатая команда чемпионата. Проект поддерживает General Motors.',
     fact: 'В дебютном сезоне Cadillac использует силовые установки Ferrari, пока General Motors готовит собственный двигатель.',
     drivers: [

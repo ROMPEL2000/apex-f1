@@ -1,8 +1,6 @@
 export const season = 2026
-export const officialCalendar = 'https://www.formula1.com/en/racing/2026'
 export const terms = 'https://github.com/jolpica/jolpica-f1/blob/main/TERMS.md'
 export const dataLicense = 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
-export const scheduleApi = (year: number) => 'https://api.jolpi.ca/ergast/f1/' + year + '/races/'
 
 const locations: Record<string, [string, string, string]> = {
   albert_park: ['Австралия', 'Австралия', 'Australia/Melbourne'],
@@ -28,6 +26,7 @@ const locations: Record<string, [string, string, string]> = {
   vegas: ['Лас-Вегас', 'США', 'America/Los_Angeles'],
   losail: ['Катар', 'Катар', 'Asia/Qatar'],
   yas_marina: ['Абу-Даби', 'ОАЭ', 'Asia/Dubai'],
+  imola: ['Имола', 'Италия', 'Europe/Rome'],
   bahrain: ['Бахрейн', 'Бахрейн', 'Asia/Bahrain'],
   jeddah: ['Саудовская Аравия', 'Саудовская Аравия', 'Asia/Riyadh'],
   istanbul: ['Турция', 'Турция', 'Europe/Istanbul'],
@@ -65,6 +64,7 @@ export interface Weekend {
   year: number
   title: string
   country: string
+  circuitId: string
   circuit: string
   zone?: string
   sessions: Session[]
@@ -99,7 +99,7 @@ export function parseSchedule(payload: unknown, expectedYear: number): Weekend[]
       if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value.date) || (key === 'SprintShootout' && race.SprintQualifying)) return []
       return [{ key, name: sessionNames[key], date: value.date, start: timestamp(value) }]
     }).sort((a, b) => (a.start ?? Date.parse(a.date)) - (b.start ?? Date.parse(b.date)))
-    return { id: race.season + '-' + race.round, round: Number(race.round), year: expectedYear, title, country, circuit: circuit.circuitName, zone, sessions }
+    return { id: race.season + '-' + race.round, round: Number(race.round), year: expectedYear, title, country, circuitId: circuit.circuitId, circuit: circuit.circuitName, zone, sessions }
   }).sort((a, b) => a.round - b.round)
 }
 

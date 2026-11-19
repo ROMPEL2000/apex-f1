@@ -1,9 +1,9 @@
-import { memo, useEffect, useRef, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
-import { AnimatePresence, useReducedMotion } from 'motion/react'
+import { memo, useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react'
+import { useReducedMotion, useScroll, useSpring, useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
 import { Icon } from './icons'
 import { media, mediaUrl } from './media'
-import { driversTitleSource, editorialDate, standingSource, teams, teamTitleSource, type Team } from './teams'
+import { driversTitleSource, editorialDate, teams, teamTitleSource, type Team } from './teams'
 
 export const teamLink = (team: Team, driver?: string) => '#teams/' + team.id + (driver ? '/' + driver : '')
 
@@ -13,131 +13,150 @@ export function MediaPhoto({ file, alt, className, eager = false }: { file: stri
     onError={event => { event.currentTarget.style.visibility = 'hidden' }} />
 }
 
-export const Garage = memo(function Garage({ team, direction, navigate }: { team: Team; direction: number; navigate: (team: Team, offset?: number, driver?: string) => void }) {
+export interface TeamStanding {
+  position: string
+  points: number | null
+  wins: number | null
+}
+
+interface GarageProps {
+  year: number
+  standings: ReadonlyMap<string, TeamStanding>
+  navigate: (team: Team, driver?: string) => void
+}
+
+const compactView = '(max-width: 680px)'
+function subscribeCompact(onChange: () => void) {
+  const mediaQuery = matchMedia(compactView)
+  mediaQuery.addEventListener('change', onChange)
+  return () => mediaQuery.removeEventListener('change', onChange)
+}
+const isCompact = () => matchMedia(compactView).matches
+
+function TeamScene({ team, index, year, standings, navigate, compact }: GarageProps & { team: Team; index: number; compact: boolean }) {
+  const ref = useRef<HTMLElement>(null)
   const reduce = useReducedMotion()
-  const gesture = useRef<{ x: number; y: number; id: number } | null>(null)
-  const selector = useRef<HTMLElement>(null)
-  useEffect(() => {
-    const container = selector.current
-    const tab = container?.querySelector<HTMLAnchorElement>('.active')
-    if (!tab || !container) return
-    const item = tab.getBoundingClientRect()
-    const rail = container.getBoundingClientRect()
-    if (item.left < rail.left || item.right > rail.right) {
-      container.scrollBy({ left: item.left - rail.left - (rail.width - item.width) / 2, behavior: reduce ? 'instant' : 'smooth' })
-    }
-  }, [team, reduce])
-  const current = teams.indexOf(team)
-  const move = (step: number) => navigate(teams[(current + step + teams.length) % teams.length], step)
-  const enter = (delay: number, offset = 20) => ({
-    initial: reduce ? false as const : { opacity: 0, y: offset },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: reduce ? 0 : 0.42, delay: reduce ? 0 : delay },
-  })
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const progress = useSpring(scrollYProgress, { stiffness: 82, damping: 21, restDelta: .001, skipInitialAnimation: true })
+  const distance = compact ? .28 : 1
+  const titleX = useTransform(progress, [0, .18, .5, .83, 1], [-125, -100, 0, 0, 75].map(value => value * distance))
+  const headingY = useTransform(progress, [0, .1, .44, 1], [54, 43, 0, 0].map(value => value * distance))
+  const carX = useTransform(progress, [0, .08, .55, .82, 1], [230, 195, 0, 0, -66].map(value => value * distance))
+  const carOpacity = useTransform(progress, [0, .09, .49, .84, 1], [.22, .35, 1, 1, .64])
+  const firstY = useTransform(progress, [0, .19, .58, .86, 1], [107, 82, 0, 0, -30].map(value => value * distance))
+  const secondY = useTransform(progress, [0, .26, .65, .89, 1], [145, 112, 0, 0, -24].map(value => value * distance))
+  const firstOpacity = useTransform(progress, [.13, .58], [.57, 1])
+  const secondOpacity = useTransform(progress, [.2, .65], [.57, 1])
+  const storyY = useTransform(progress, [0, .28, .69, 1], [40, 29, 0, 0].map(value => value * distance))
+  const storyOpacity = useTransform(progress, [.28, .69], [.76, 1])
+  const background = useTransform(progress, [0, .53, .77, 1], [.28, .9, .9, .18])
+  const mark = 'logo-' + team.id + '.webp'
+  const standing = standings.get(team.id)
 
-  function onKeyDown(event: KeyboardEvent<HTMLElement>) {
-    if (event.altKey || event.ctrlKey || event.metaKey || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return
-    event.preventDefault()
-    move(event.key === 'ArrowRight' ? 1 : -1)
-  }
+  return <article ref={ref} className="team-episode" id={teamLink(team).slice(1)} data-team={team.id}
+    aria-labelledby={'team-title-' + team.id} style={{ '--accent': team.accent, '--team-tone': team.scene } as CSSProperties}>
+    <div className="episode-stage">
+      <m.div className="episode-light" aria-hidden="true" style={reduce ? undefined : { opacity: background }} />
+      <div className="wrap episode-inner">
+        <m.div className="episode-watermark large-type" aria-hidden="true" style={reduce ? undefined : { x: titleX }}>{team.label}</m.div>
+        <m.figure className="episode-car" style={reduce ? undefined : { x: carX, opacity: carOpacity }}>
+          <MediaPhoto file={'car-' + team.id + '.webp'} alt={team.label + ' ' + team.car + ' на трассе'} />
+          <figcaption><span>{team.car}</span><i /> Сезон 2026</figcaption>
+        </m.figure>
 
-  function onPointerDown(event: PointerEvent<HTMLElement>) {
-    if (event.pointerType === 'touch') gesture.current = { x: event.clientX, y: event.clientY, id: event.pointerId }
-  }
-
-  function onPointerUp(event: PointerEvent<HTMLElement>) {
-    const start = gesture.current
-    gesture.current = null
-    if (!start || start.id !== event.pointerId) return
-    const dx = event.clientX - start.x
-    if (Math.abs(dx) > 54 && Math.abs(dx) > Math.abs(event.clientY - start.y) * 1.4) move(dx < 0 ? 1 : -1)
-  }
-
-  const carFile = 'car-' + team.id + '.webp'
-  const logoFile = 'logo-' + team.id + '.webp'
-  return <section className="garage" id="teams" aria-labelledby="garage-title" tabIndex={0} onKeyDown={onKeyDown}>
-    <div className="wrap">
-      <div className="section-heading garage-heading">
-        <div><p className="eyebrow"><span /> Решётка 2026</p><h2 id="garage-title">Команды</h2></div>
-        <div className="team-arrows">
-          <button type="button" aria-label="Предыдущая команда" onClick={() => move(-1)}><Icon name="left" /></button>
-          <span aria-live="polite" aria-atomic="true">{String(current + 1).padStart(2, '0')} <span>/</span> {teams.length}<span className="sr-only">, {team.label}</span></span>
-          <button type="button" aria-label="Следующая команда" onClick={() => move(1)}><Icon name="right" /></button>
-        </div>
-      </div>
-      <nav ref={selector} className="team-selector" aria-label="Выбор команды">
-        {teams.map((item, index) => <a key={item.id} className={item === team ? 'active' : ''} aria-current={item === team ? 'true' : undefined} href={teamLink(item)}
-          style={{ '--tab-color': item.accent } as CSSProperties} onClick={event => { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); navigate(item, index < current ? -1 : 1) }}>
-          <span />{item.label}
-        </a>)}
-      </nav>
-    </div>
-    <m.div className="team-stage" animate={{ backgroundColor: team.scene }} initial={false} transition={{ duration: reduce ? 0 : 0.55 }}
-      style={{ '--team-accent': team.accent } as CSSProperties} onPointerDown={onPointerDown} onPointerUp={onPointerUp} onPointerCancel={() => { gesture.current = null }}>
-      <div className="team-gridline" aria-hidden="true" />
-      <div className="wrap scene-wrap">
-        <div className="team-visuals">
-          <AnimatePresence initial={false} custom={direction}>
-            <m.div className="car-frame" key={team.id} custom={direction}
-              variants={{
-                enter: (side: number) => ({ x: reduce ? 0 : side * 90, opacity: 0 }),
-                settled: { x: 0, opacity: 1 },
-                leave: (side: number) => ({ x: reduce ? 0 : side * -60, opacity: 0 }),
-              }}
-              initial="enter" animate="settled" exit="leave" transition={{ duration: reduce ? 0 : 0.48, ease: [0.2, 0.65, 0.25, 1] }}>
-              <MediaPhoto file={carFile} alt={team.label + ' ' + team.car + ' на трассе'} eager />
-              <div className="car-shade" />
-              <span className="car-caption">{team.car} <i /> 2026</span>
-            </m.div>
-          </AnimatePresence>
-        </div>
-        <div className="scene-foreground" key={team.id}>
-          <div className="team-identity">
-            <m.div className="team-mark" {...enter(0)} aria-hidden="true">
-              {media[logoFile] ? <MediaPhoto file={logoFile} alt="" eager /> : <span>{team.mark}</span>}
-            </m.div>
-            <m.h3 {...enter(0.035, 28)}>{team.label}</m.h3>
-            <m.p className="work-name" {...enter(0.07)}>{team.name}</m.p>
-            {team.champion && <m.a className="champion-tag" href={teamTitleSource} {...enter(0.11)}><Icon name="trophy" size={17} /> Кубок конструкторов {team.champion}</m.a>}
+        <m.div className="episode-copy" style={reduce ? undefined : { y: headingY }}>
+          <div className="episode-label">
+            <span className="episode-number">{String(index + 1).padStart(2, '0')}</span>
+            <span className="team-mark" aria-hidden="true">{media[mark] ? <MediaPhoto file={mark} alt="" /> : team.mark}</span>
           </div>
-          <m.div className="team-facts" {...enter(0.17)}>
-            <div><small>Болид</small><strong>{team.car}</strong></div>
-            <div><small>База</small><strong>{team.base}</strong></div>
-            <div><small>Очки к {editorialDate}</small><a href={standingSource}><strong>{team.points}</strong><Icon name="external" size={14} /></a></div>
-          </m.div>
-        </div>
-      </div>
-      <div className="wrap team-bottom" key={team.id + '-details'}>
-        <m.div className="team-editorial" {...enter(0.16)}>
-          <h4>История команды</h4><p>{team.history}</p>
-          <div className="team-fact"><strong>Факт из истории</strong><p>{team.fact}</p><a href={'https://www.formula1.com/en/teams/' + team.source}>Профиль Formula 1 <Icon name="external" size={14} /></a></div>
+          <h3 className="large-type" id={'team-title-' + team.id}>{team.label}</h3>
+          <p className="episode-team-name">{team.name}</p>
+          {team.champion && <a className="champion-tag" href={teamTitleSource}><Icon name="trophy" size={16} /> Кубок конструкторов {team.champion}</a>}
         </m.div>
-        <div className="drivers">
-          <h4>Пилоты</h4>
-          <div className="driver-pair">
-            {team.drivers.map((driver, index) => <m.a href={teamLink(team, driver.id)} className="driver-tile" key={driver.id} {...enter(0.2 + index * 0.085, 28)}
-              onClick={event => { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); navigate(team, 0, driver.id) }}>
-              <div className="driver-portrait">
-                <span className="driver-number" aria-hidden="true">{driver.number}</span>
-                <MediaPhoto file={'driver-' + driver.id + '.webp'} alt="" />
-                {driver.champion && <span className="mini-title"><Icon name="trophy" size={15} /> Чемпион {driver.champion}</span>}
-              </div>
-              <div className="driver-meta"><span><b>{driver.name}</b><small>№ {driver.number} <i /> {driver.country}</small></span><Icon name="arrow" /></div>
-            </m.a>)}
-          </div>
+
+        <div className="episode-drivers" aria-label={'Пилоты ' + team.label}>
+          {team.drivers.map((driver, index) => <m.a key={driver.id} className="pilot-plane" href={teamLink(team, driver.id)}
+            style={reduce ? undefined : { y: index === 0 ? firstY : secondY, opacity: index === 0 ? firstOpacity : secondOpacity }}
+            onClick={event => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+              event.preventDefault()
+              navigate(team, driver.id)
+            }}>
+            <span className="pilot-number large-type" aria-hidden="true">{driver.number}</span>
+            <MediaPhoto file={'driver-' + driver.id + '.webp'} alt="" />
+            <span className="pilot-label"><b>{driver.name}</b><small>№ {driver.number} · {driver.country}</small></span>
+            {driver.champion && <span className="mini-title"><Icon name="trophy" size={14} /> Чемпион {driver.champion}</span>}
+          </m.a>)}
+        </div>
+
+        <m.div className="episode-story" style={reduce ? undefined : { y: storyY, opacity: storyOpacity }}>
+          <dl className="episode-stat">
+            <div><dt>Место · {year}</dt><dd>{standing?.position ?? '—'}</dd></div>
+            <div><dt>Очки · {year}</dt><dd>{standing?.points ?? '—'}</dd></div>
+            <div><dt>Победы · {year}</dt><dd>{standing?.wins ?? '—'}</dd></div>
+          </dl>
+          <p>{team.history}</p>
+          <details><summary>Факт о команде</summary><p>{team.fact} <a href={'https://www.formula1.com/en/teams/' + team.source}>Источник <Icon name="external" size={13} /></a></p></details>
+          <p className="episode-base">{team.base} <span>·</span> Состав на {editorialDate}</p>
+        </m.div>
+      </div>
+    </div>
+  </article>
+}
+
+export const Garage = memo(function Garage(props: GarageProps) {
+  const ref = useRef<HTMLElement>(null)
+  const reduce = useReducedMotion()
+  const compact = useSyncExternalStore(subscribeCompact, isCompact)
+  const [current, setCurrent] = useState(teams[0].id)
+
+  useEffect(() => {
+    if (typeof IntersectionObserver !== 'function') return
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.find(entry => entry.isIntersecting)
+      if (visible && visible.target instanceof HTMLElement && visible.target.dataset.team) setCurrent(visible.target.dataset.team)
+    }, { rootMargin: '-32% 0px -55% 0px' })
+    ref.current?.querySelectorAll('[data-team]').forEach(scene => observer.observe(scene))
+    return () => observer.disconnect()
+  }, [])
+
+  const active = teams.findIndex(team => team.id === current)
+  return <section id="teams" ref={ref} className="garage" aria-labelledby="garage-title">
+    <div className="wrap editorial-heading">
+      <m.div initial={reduce ? false : { y: 25, opacity: .35 }} whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, amount: .25 }} transition={{ duration: reduce ? 0 : .65, ease: 'easeOut' }}>
+        <p className="index-label"><i /> Решётка 2026</p>
+        <h2 id="garage-title">Команды</h2>
+        <p>11 команд и 22 пилота сезона 2026.</p>
+      </m.div>
+    </div>
+    <div className="episode-index">
+      <div className="wrap episode-index-inner">
+        <span className="index-count">{String(active + 1).padStart(2, '0')} <span>/</span> {teams.length}</span>
+        <label htmlFor="team-jump" className="sr-only">Перейти к команде</label>
+        <select id="team-jump" value={current} onChange={event => {
+          const team = teams.find(item => item.id === event.target.value)
+          if (team) {
+            setCurrent(team.id)
+            props.navigate(team)
+          }
+        }}>{teams.map(team => <option value={team.id} key={team.id}>{team.label}</option>)}</select>
+        <div className="episode-progress" aria-hidden="true">
+          {teams.map((team, index) => <span key={team.id} className={index <= active ? 'filled' : ''} style={{ '--segment': team.accent } as CSSProperties} />)}
         </div>
       </div>
-    </m.div>
+    </div>
+    {teams.map((team, index) => <TeamScene key={team.id} team={team} index={index} compact={compact} {...props} />)}
   </section>
 })
 
 export function DriverProfile({ team, driverId }: { team: Team; driverId: string }) {
   const driver = team.drivers.find(item => item.id === driverId)
   if (!driver) return null
-  return <div className="profile" style={{ '--team-accent': team.accent } as CSSProperties}>
+  return <div className="profile" style={{ '--accent': team.accent } as CSSProperties}>
     <div className="profile-photo"><MediaPhoto file={'driver-' + driver.id + '.webp'} alt={driver.name} eager /></div>
     <div className="profile-copy">
-      <p className="eyebrow">{team.label} / № {driver.number}</p>
+      <p className="index-label">{team.label} / № {driver.number}</p>
       <h2 id="dialog-title">{driver.name}</h2>
       <p>{driver.country}</p>
       {driver.champion && <a className="champion-tag" href={driversTitleSource}><Icon name="trophy" size={18} /> Чемпион мира {driver.champion}</a>}

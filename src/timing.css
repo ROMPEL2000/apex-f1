@@ -1,0 +1,94 @@
+.race-hub { position: relative; background: #0c1012; border-top: 1px solid var(--line); padding-bottom: clamp(36px, 7vw, 90px); }
+.standings-hub { background: #0a0e10; }
+.section-anchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; }
+.table-heading { display: flex; align-items: end; gap: 14px 24px; justify-content: space-between; flex-wrap: wrap; }
+.table-heading h2 { margin-bottom: 0; }
+.season-control { display: flex; align-items: center; gap: 9px; white-space: nowrap; color: #ccd6d6; font-size: .8rem; }
+.season-control select { padding: 9px 15px; }
+.calendar-layout { display: grid; grid-template-columns: minmax(250px,.59fr) minmax(0,1.55fr); align-items: start; gap: clamp(20px,4vw,52px); }
+.line-tabs { display: flex; align-items: stretch; flex-wrap: wrap; gap: 4px 19px; min-height: 44px; border-bottom: 1px solid var(--line); }
+.line-tabs :is(button,a) { display: flex; align-items: center; color: #b5c0c1; background: transparent; border: 0; border-bottom: 2px solid transparent; padding: 8px 2px; font-size: .82rem; font-weight: 630; text-align: left; }
+.line-tabs :is([aria-pressed=true],[aria-current=page]) { color: #fbfaf7; border-bottom-color: var(--red); }
+.line-tabs :is(button,a):hover { color: #ffb5a4; }
+.race-filters { gap: 5px 12px; }
+.race-filters button { font-size: .74rem; }
+.race-options, .sessions { list-style: none; padding: 0; margin: 0; }
+.race-options { max-height: 532px; overflow-y: auto; overscroll-behavior: contain; scrollbar-color: #526168 #101719; }
+.race-option { display: grid; align-items: center; grid-template-columns: 37px minmax(0,1fr) 16px; text-align: left; gap: 8px; min-height: 62px; width: 100%; padding: 5px 8px 5px 3px; color: #f0f4f3; background: transparent; border: 0; border-bottom: 1px solid var(--line); }
+.race-option:focus-visible { outline-offset: -3px; }
+.race-option:hover, .race-option[aria-pressed=true] { background: #171d20; }
+.race-option[aria-pressed=true] { box-shadow: inset 2px 0 var(--red); }
+.race-option[aria-pressed=true] .round-num { color: var(--red); }
+.race-option strong { display: block; font-size: .89rem; line-height: 1.2; }
+.race-option small { display: block; font-size: .69rem; color: #aeb9bc; margin-top: 4px; }
+.round-num { color: #a3afb0; font: italic 700 1.73rem/1 var(--display); text-align: center; }
+.calendar-date-note { margin-top: 12px; max-width: 36ch; color: #aab7b8; font-size: .71rem; line-height: 1.6; }
+.weekend-content { min-width: 0; }
+.time-switch { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; margin-bottom: 10px; }
+.time-switch button { color: #b4bec0; background: transparent; border: 1px solid transparent; padding: 6px 12px; min-height: 39px; font-size: .75rem; }
+.time-switch button:hover { color: white; }
+.time-switch [aria-pressed=true] { background: #1c2225; border-color: #c2d9da39; color: #fff8f6; }
+.weekend { background: #101719; }
+.weekend-head { min-height: 223px; display: grid; align-items: center; grid-template-columns: minmax(0, 1.05fr) minmax(145px, .8fr); gap: 10px; padding: 17px 23px; border-top: 1px solid #e8f1ef3b; background: radial-gradient(ellipse at 83% 47%, #223037, transparent 75%), #11171a; }
+.weekend-head h3 { font-size: clamp(1.97rem, 4.4vw, 4rem); color: #f5f7f6; letter-spacing: -.063em; line-height: .98; margin: 7px 0 11px -.025em; overflow-wrap: anywhere; }
+.weekend-head p:not(.index-label) { font-size: .79rem; color: #d0dada; overflow-wrap: anywhere; }
+.weekend-head p span { color: var(--red); margin-inline: 3px; }
+.weekend-head .weekend-local { margin-top: 7px; font-size: .7rem !important; color: #adc0c0 !important; }
+.track-figure { margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #c1cece; }
+.track-figure img { width: min(100%, 220px); height: 143px; object-fit: contain; }
+.track-figure figcaption { text-align: center; display: flex; gap: 3px 8px; justify-content: center; flex-wrap: wrap; font-size: .64rem; line-height: 1.35; }
+.track-figure a { text-decoration: underline; text-underline-offset: 3px; }
+.track-figure a:last-child { flex-basis: 100%; }
+.track-missing { color: #c6d2d2; align-self: center; font-size: .77rem; }
+.weekend > .line-tabs { padding-inline: 20px; }
+.session-zone { color: #b8c7c7; display: flex; align-items: center; gap: 8px; padding: 10px 20px; font-size: .73rem; background: #0d1416; }
+.session { min-height: 49px; padding: 7px 20px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .83rem; }
+.session-label { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.session.next-session { box-shadow: inset 3px 0 var(--red); }
+.next-tag { color: #ffbcae; background: #402523; padding: 3px 6px; font-size: .63rem; }
+.session time:not(.missing-time time) { display: inline-flex; gap: 12px; align-items: center; text-align: right; white-space: nowrap; }
+.session time span, .missing-time { color: #b9c3c3; font-size: .72rem; text-align: right; }
+.session time strong { min-width: 44px; font-variant-numeric: tabular-nums; }
+.calendar-footer, .data-meta { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 7px 16px; margin-top: 15px; color: #b4bfc0; font-size: .73rem; line-height: 1.5; }
+.data-meta { padding: 12px 9px; margin: 0; border-top: 1px solid var(--line); }
+.event-meta { padding-inline: 18px; }
+.data-status i { width: 7px; height: 7px; display: inline-block; border-radius: 50%; margin-right: 4px; background: #c69554; }
+.data-status i.online { background: #62dfae; }
+.data-status i.loading { background: #8b999b; }
+.data-status i.unavailable { background: #ff785f; }
+.source-line { display: inline-flex; gap: 5px 15px; flex-wrap: wrap; color: #c3cdcb; font-size: .72rem; }
+.source-line a { text-decoration: underline; text-underline-offset: 3px; }
+.standings-hub .source-line { margin-top: 14px; }
+.table-scroll { overflow: auto; max-width: 100%; scrollbar-color: #556469 #0e1518; }
+.timing-table { width: 100%; min-width: 520px; border-collapse: collapse; font-size: .82rem; color: #dbe4e3; }
+.timing-table thead { background: #1c262a; }
+.timing-table th, .timing-table td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); }
+.timing-table thead th { color: #cdd8d7; font-weight: 600; font-size: .7rem; white-space: nowrap; }
+.timing-table tbody th { color: #fff; }
+.timing-table tbody tr:hover { background: #192326; }
+.timing-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.timing-table .table-position { font-family: var(--display); font-weight: 700; font-style: italic; font-size: 1.15rem; width: 58px; }
+.timing-table .points { color: #fff; font-weight: 730; }
+.timing-table .top-three { background: #131c20; }
+.timing-table .top-three .table-position { color: #ff9d82; border-left: 2px solid #ff61478f; }
+.participant-link { font: inherit; display: inline; padding: 0; border: 0; background: transparent; color: #f9fafa; text-align: left; text-decoration: underline; text-decoration-color: #a8bbbb80; text-underline-offset: 4px; }
+.participant-link:hover { color: #ffa994; text-decoration-color: currentColor; }
+.result-scroll .timing-table { min-width: 570px; }
+.result-scroll .timing-table td,.result-scroll .timing-table th { padding: 9px 7px; }
+.result-status { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.data-empty { color: #c3cecd; padding: 21px 10px; font-size: .87rem; line-height: 1.55; }
+.weekend .data-empty { padding-inline: 20px; }
+.archived-profile h2 { margin: 9px 0; font-size: clamp(2rem, 6vw, 3.2rem); letter-spacing: -.065em; }
+@media(max-width: 760px) {
+  .calendar-layout { grid-template-columns: minmax(0,1fr); gap: 12px; }
+  .race-options { max-height: 200px; }
+  .race-option { min-height: 50px; }
+  .calendar-date-note { max-width: none; margin-top: 7px; }
+  .weekend-head { min-height: 155px; padding: 12px; grid-template-columns: minmax(0, 1.05fr) minmax(0, .85fr); }
+  .track-figure img { height: 96px; }
+  .track-figure figcaption { font-size: .58rem; }
+  .session,.session-zone { padding-inline: 12px; }
+  .weekend > .line-tabs { padding-inline: 12px; }
+  .timing-table { min-width: 488px; }
+  .timing-table td,.timing-table th { padding-inline: 8px; }
+}

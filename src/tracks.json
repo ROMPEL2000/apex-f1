@@ -1,0 +1,446 @@
+{
+  "albert_park": {
+    "2025": {
+      "id": "melbourne-2",
+      "length": 5.278,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/melbourne.yml"
+    },
+    "2026": {
+      "id": "melbourne-2",
+      "length": 5.278,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/melbourne.yml"
+    }
+  },
+  "shanghai": {
+    "2025": {
+      "id": "shanghai-1",
+      "length": 5.451,
+      "turns": 16,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/shanghai.yml"
+    },
+    "2026": {
+      "id": "shanghai-1",
+      "length": 5.451,
+      "turns": 16,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/shanghai.yml"
+    }
+  },
+  "suzuka": {
+    "2025": {
+      "id": "suzuka-2",
+      "length": 5.807,
+      "turns": 18,
+      "direction": "FIGURE_OF_EIGHT",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/suzuka.yml"
+    },
+    "2026": {
+      "id": "suzuka-2",
+      "length": 5.807,
+      "turns": 18,
+      "direction": "FIGURE_OF_EIGHT",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/suzuka.yml"
+    }
+  },
+  "miami": {
+    "2025": {
+      "id": "miami-1",
+      "length": 5.412,
+      "turns": 19,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/miami.yml"
+    },
+    "2026": {
+      "id": "miami-1",
+      "length": 5.412,
+      "turns": 19,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/miami.yml"
+    }
+  },
+  "villeneuve": {
+    "2025": {
+      "id": "montreal-6",
+      "length": 4.361,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/montreal.yml"
+    },
+    "2026": {
+      "id": "montreal-6",
+      "length": 4.361,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/montreal.yml"
+    }
+  },
+  "monaco": {
+    "2025": {
+      "id": "monaco-6",
+      "length": 3.337,
+      "turns": 19,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/monaco.yml"
+    },
+    "2026": {
+      "id": "monaco-6",
+      "length": 3.337,
+      "turns": 19,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/monaco.yml"
+    }
+  },
+  "catalunya": {
+    "2025": {
+      "id": "catalunya-6",
+      "length": 4.657,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/catalunya.yml"
+    },
+    "2026": {
+      "id": "catalunya-6",
+      "length": 4.657,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/catalunya.yml"
+    }
+  },
+  "red_bull_ring": {
+    "2025": {
+      "id": "spielberg-3",
+      "length": 4.326,
+      "turns": 10,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/spielberg.yml"
+    },
+    "2026": {
+      "id": "spielberg-3",
+      "length": 4.326,
+      "turns": 10,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/spielberg.yml"
+    }
+  },
+  "silverstone": {
+    "2025": {
+      "id": "silverstone-8",
+      "length": 5.891,
+      "turns": 18,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/silverstone.yml"
+    },
+    "2026": {
+      "id": "silverstone-8",
+      "length": 5.891,
+      "turns": 18,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/silverstone.yml"
+    }
+  },
+  "spa": {
+    "2025": {
+      "id": "spa-francorchamps-4",
+      "length": 7.004,
+      "turns": 19,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/spa-francorchamps.yml"
+    },
+    "2026": {
+      "id": "spa-francorchamps-4",
+      "length": 7.004,
+      "turns": 19,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/spa-francorchamps.yml"
+    }
+  },
+  "hungaroring": {
+    "2025": {
+      "id": "hungaroring-3",
+      "length": 4.381,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/hungaroring.yml"
+    },
+    "2026": {
+      "id": "hungaroring-3",
+      "length": 4.381,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/hungaroring.yml"
+    }
+  },
+  "zandvoort": {
+    "2025": {
+      "id": "zandvoort-5",
+      "length": 4.259,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/zandvoort.yml"
+    },
+    "2026": {
+      "id": "zandvoort-5",
+      "length": 4.259,
+      "turns": 14,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/zandvoort.yml"
+    }
+  },
+  "monza": {
+    "2025": {
+      "id": "monza-7",
+      "length": 5.793,
+      "turns": 11,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/monza.yml"
+    },
+    "2026": {
+      "id": "monza-7",
+      "length": 5.793,
+      "turns": 11,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/monza.yml"
+    }
+  },
+  "madring": {
+    "2026": {
+      "id": "madring-1",
+      "length": 5.414,
+      "turns": 22,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://www.formula1.com/en/latest/article/need-to-know-the-most-important-facts-stats-and-trivia-ahead-of-the-2026-spanish-grand-prix-madrid-madring.0VbYQHCnrBCibxbkwygP0"
+    }
+  },
+  "baku": {
+    "2025": {
+      "id": "baku-1",
+      "length": 6.003,
+      "turns": 20,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/baku.yml"
+    },
+    "2026": {
+      "id": "baku-1",
+      "length": 6.003,
+      "turns": 20,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/baku.yml"
+    }
+  },
+  "sepang": {
+    "2026": {
+      "id": "sepang-1",
+      "length": 5.543,
+      "turns": 15,
+      "direction": "CLOCKWISE",
+      "geo": true,
+      "source": "https://www.formula1.com/en/racing/2026/bahrain"
+    }
+  },
+  "marina_bay": {
+    "2025": {
+      "id": "marina-bay-4",
+      "length": 4.927,
+      "turns": 19,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/marina-bay.yml"
+    },
+    "2026": {
+      "id": "marina-bay-4",
+      "length": 4.927,
+      "turns": 19,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/marina-bay.yml"
+    }
+  },
+  "americas": {
+    "2025": {
+      "id": "austin-1",
+      "length": 5.513,
+      "turns": 20,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/austin.yml"
+    },
+    "2026": {
+      "id": "austin-1",
+      "length": 5.513,
+      "turns": 20,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/austin.yml"
+    }
+  },
+  "rodriguez": {
+    "2025": {
+      "id": "mexico-city-3",
+      "length": 4.304,
+      "turns": 17,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/mexico-city.yml"
+    },
+    "2026": {
+      "id": "mexico-city-3",
+      "length": 4.304,
+      "turns": 17,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/mexico-city.yml"
+    }
+  },
+  "interlagos": {
+    "2025": {
+      "id": "interlagos-2",
+      "length": 4.309,
+      "turns": 15,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/interlagos.yml"
+    },
+    "2026": {
+      "id": "interlagos-2",
+      "length": 4.309,
+      "turns": 15,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/interlagos.yml"
+    }
+  },
+  "vegas": {
+    "2025": {
+      "id": "las-vegas-1",
+      "length": 6.201,
+      "turns": 17,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/las-vegas.yml"
+    },
+    "2026": {
+      "id": "las-vegas-1",
+      "length": 6.201,
+      "turns": 17,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/las-vegas.yml"
+    }
+  },
+  "losail": {
+    "2025": {
+      "id": "lusail-1",
+      "length": 5.419,
+      "turns": 16,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/lusail.yml"
+    },
+    "2026": {
+      "id": "lusail-1",
+      "length": 5.419,
+      "turns": 16,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/lusail.yml"
+    }
+  },
+  "yas_marina": {
+    "2025": {
+      "id": "yas-marina-2",
+      "length": 5.281,
+      "turns": 16,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/yas-marina.yml"
+    },
+    "2026": {
+      "id": "yas-marina-2",
+      "length": 5.281,
+      "turns": 16,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/yas-marina.yml"
+    }
+  },
+  "bahrain": {
+    "2025": {
+      "id": "bahrain-1",
+      "length": 5.412,
+      "turns": 15,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/bahrain.yml"
+    },
+    "2026": {
+      "id": "bahrain-1",
+      "length": 5.412,
+      "turns": 15,
+      "direction": "CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/bahrain.yml"
+    }
+  },
+  "jeddah": {
+    "2025": {
+      "id": "jeddah-1",
+      "length": 6.174,
+      "turns": 27,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/jeddah.yml"
+    },
+    "2026": {
+      "id": "jeddah-1",
+      "length": 6.174,
+      "turns": 27,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": false,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/jeddah.yml"
+    }
+  },
+  "imola": {
+    "2025": {
+      "id": "imola-3",
+      "length": 4.909,
+      "turns": 19,
+      "direction": "ANTI_CLOCKWISE",
+      "geo": true,
+      "source": "https://github.com/f1db/f1db/blob/7731345ffc121487d73afbf6dd3896718862b157/src/data/circuits/imola.yml"
+    }
+  }
+}
