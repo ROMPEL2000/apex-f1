@@ -7,7 +7,7 @@ import '@fontsource/barlow-condensed/latin-700-italic.css'
 import '@fontsource/barlow-condensed/latin-800-italic.css'
 import { isUpcoming, season } from './calendar'
 import { DriverProfile, Garage, teamLink, type TeamStanding } from './Garage'
-import { HeroMedia, heroVideoCredit, previewMode, previewUrl } from './HeroMedia'
+import { HeroMedia, heroVideoCredit, openingLogoUrl } from './HeroMedia'
 import { ApexMark, Icon } from './icons'
 import { media, mediaUrl } from './media'
 import { NextRace, Schedule } from './Schedule'
@@ -69,6 +69,7 @@ const Credits = memo(function Credits() {
           <li><a href={teamTitleSource}>Кубок конструкторов 2026</a></li>
           <li>Схемы трасс · <a href={trackArchiveSource}>Jules Roy / F1DB</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></li>
           <li>Геометрия Имолы и Сепанга · <a href={trackGeoSource}>Tomislav Bacinger</a> · MIT</li>
+          {openingLogoUrl && <li><a href="https://commons.wikimedia.org/wiki/File:F1.svg">Логотип Formula 1</a> · товарный знак Formula One Licensing B.V.</li>}
           {heroVideoCredit && <li>Фоновый ролик <a href={heroVideoCredit.source}>{heroVideoCredit.author}</a>{heroVideoCredit.licenseUrl && <> · <a href={heroVideoCredit.licenseUrl}>{heroVideoCredit.license}</a></>}</li>}
         </ul>
         <ul className="media-list">{Object.values(media).map(item => <li key={item.file}>
@@ -192,7 +193,7 @@ function App() {
       <HeroMedia />
       <div className="opening-shade" aria-hidden="true" />
       <m.div className="opening-mark" style={reduce ? undefined : { opacity: markOpacity }}>
-        {previewMode && <img className="opening-logo" src={previewUrl('f1-mark.svg')} alt="Логотип F1"
+        {openingLogoUrl && <img className="opening-logo" src={openingLogoUrl} alt="Логотип F1"
           onError={event => { event.currentTarget.hidden = true }} />}
         <span className="opening-wordmark large-type">FORMULA 1</span>
       </m.div>

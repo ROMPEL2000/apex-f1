@@ -1,1 +1,34 @@
-{"sources":[],"credit":null}
+{
+  "sources": [
+    {
+      "file": "rb22-opening-480.mp4",
+      "width": 854,
+      "height": 480,
+      "type": "video/mp4; codecs=\"avc1.640028\"",
+      "bitrate": 675438,
+      "fps": 30
+    },
+    {
+      "file": "rb22-opening-1080.mp4",
+      "width": 1920,
+      "height": 1080,
+      "type": "video/mp4; codecs=\"avc1.640028\"",
+      "bitrate": 1824744,
+      "fps": 30
+    },
+    {
+      "file": "rb22-opening-2160.mp4",
+      "width": 3840,
+      "height": 2160,
+      "type": "video/mp4; codecs=\"av01.0.12M.08\"",
+      "bitrate": 2696897,
+      "fps": 30
+    }
+  ],
+  "credit": {
+    "author": "Rekai",
+    "source": "https://www.youtube.com/watch?v=aYdrQp5l-zA"
+  },
+  "poster": "rb22-opening-poster.webp",
+  "logo": "f1-mark.svg"
+}

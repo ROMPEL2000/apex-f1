@@ -16,19 +16,24 @@ interface HeroVideoConfig {
   sources: VideoVariant[]
   credit?: VideoCredit | null
   poster?: string
+  logo?: string
 }
 
 const publicConfig: HeroVideoConfig = config
-export const previewMode = import.meta.env.DEV && import.meta.env.MODE === 'preview-media'
-export const previewUrl = (file: string) => import.meta.env.BASE_URL + 'preview-media.local/' + file
+const pendingConfig: HeroVideoConfig = { sources: [] }
+const previewMode = import.meta.env.DEV && import.meta.env.MODE === 'preview-media'
+const previewUrl = (file: string) => import.meta.env.BASE_URL + 'preview-media.local/' + file
 export const heroVideoCredit = publicConfig.credit
-const heroMediaUrl = previewMode ? previewUrl : mediaUrl
+export const openingLogoUrl = previewMode
+  ? previewUrl(publicConfig.logo ?? 'f1-mark.svg')
+  : publicConfig.logo && mediaUrl(publicConfig.logo)
 
 export function HeroMedia() {
   const container = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const reduce = useReducedMotion()
-  const [manifest, setManifest] = useState(publicConfig)
+  const [manifest, setManifest] = useState(previewMode ? pendingConfig : publicConfig)
+  const heroMediaUrl = previewMode && manifest !== publicConfig ? previewUrl : mediaUrl
   const [source, setSource] = useState<VideoVariant>()
   const [visible, setVisible] = useState(false)
   const [paused, setPaused] = useState(false)
@@ -42,9 +47,9 @@ export function HeroMedia() {
     void fetch(previewUrl('manifest.json'), { signal: controller.signal })
       .then(response => { if (response.ok) return response.json() as Promise<HeroVideoConfig> })
       .then(local => {
-        if (local && !controller.signal.aborted) setManifest(local)
+        if (!controller.signal.aborted) setManifest(local ?? publicConfig)
       })
-      .catch(() => { /* The regular cover also works without local media. */ })
+      .catch(() => { if (!controller.signal.aborted) setManifest(publicConfig) })
     return () => controller.abort()
   }, [])
 
@@ -125,6 +130,6 @@ export function HeroMedia() {
       {(playing || paused || blocked) && <button type="button" className="video-toggle" onClick={togglePlayback}
         aria-label={paused || blocked ? 'Воспроизвести фоновое видео' : 'Приостановить фоновое видео'}>{paused || blocked ? '▶' : 'Ⅱ'}</button>}
     </>}
-    {previewMode && manifest.credit && <a className="preview-video-credit" href={manifest.credit.source}>{manifest.credit.author} · анимация RB22</a>}
+    {manifest.credit && <a className="hero-video-credit" href={manifest.credit.source}>{manifest.credit.author} · анимация RB22</a>}
   </div>
 }
