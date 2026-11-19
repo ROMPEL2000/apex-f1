@@ -1,0 +1,407 @@
+{
+  "car-alpine.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-alpine.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._10_Gasly_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 10 Gasly (1).jpg"
+  },
+  "car-aston-martin.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-aston-martin.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._14_Alonso_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 14 Alonso (1).jpg"
+  },
+  "car-audi.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-audi.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._27_H%C3%BClkenberg_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 27 Hülkenberg (1).jpg"
+  },
+  "car-cadillac.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-cadillac.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._11_Perez_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 11 Perez (1).jpg"
+  },
+  "car-ferrari.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-ferrari.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._44_Hamilton_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 44 Hamilton (1).jpg"
+  },
+  "car-haas.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-haas.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._87_Bearman_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 87 Bearman (1).jpg"
+  },
+  "car-mclaren.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-mclaren.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._1_Norris_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 1 Norris (1).jpg"
+  },
+  "car-mercedes.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-mercedes.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._12_Antonelli_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 12 Antonelli (1).jpg"
+  },
+  "car-racing-bulls.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-racing-bulls.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._41_Lindblad_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 41 Lindblad (1).jpg"
+  },
+  "car-red-bull.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-red-bull.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._3_Verstappen_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 3 Verstappen (1).jpg"
+  },
+  "car-williams.webp": {
+    "author": "Lukas Raich",
+    "changes": "Оптимизация WebP",
+    "file": "car-williams.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:FIA_F1_Austria_2026_Nr._23_Albon_(1).jpg",
+    "title": "FIA F1 Austria 2026 Nr. 23 Albon (1).jpg"
+  },
+  "driver-albon.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-albon.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Alex_Albon_at_the_Melbourne_Walk_during_the_2026_Australian_Grand_Prix_(028A8626)_(cropped).jpg",
+    "title": "Alex Albon at the Melbourne Walk during the 2026 Australian Grand Prix (028A8626) (cropped).jpg"
+  },
+  "driver-alonso.webp": {
+    "author": "United Autosports",
+    "changes": "Оптимизация WebP",
+    "file": "driver-alonso.webp",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Alonso-68_(24710447098).jpg",
+    "title": "Alonso-68 (24710447098).jpg"
+  },
+  "driver-antonelli.webp": {
+    "author": "Steffen Prößdorf",
+    "changes": "Оптимизация WebP",
+    "file": "driver-antonelli.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2026-08-23_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2026_STP_3010_(cropped2).jpg",
+    "title": "2026-08-23 Motorsport, Formel 1, Großer Preis der Niederlande 2026 STP 3010 (cropped2).jpg"
+  },
+  "driver-bearman.webp": {
+    "author": "Liauzh",
+    "changes": "Оптимизация WebP",
+    "file": "driver-bearman.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2025_Japan_GP_-_Haas_-_Oliver_Bearman_-_Thursday_(cropped).jpg",
+    "title": "2025 Japan GP - Haas - Oliver Bearman - Thursday (cropped).jpg"
+  },
+  "driver-bortoleto.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-bortoleto.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gabriel_Bortoleto_at_the_Melbourne_Walk_during_the_2026_Australian_Grand_Prix_(028A8581)_cropped.jpg",
+    "title": "Gabriel Bortoleto at the Melbourne Walk during the 2026 Australian Grand Prix (028A8581) cropped.jpg"
+  },
+  "driver-bottas.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-bottas.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Valtteri_Bottas_at_the_2026_Adelaide_Motorsport_Festival_(028A7556).jpg",
+    "title": "Valtteri Bottas at the 2026 Adelaide Motorsport Festival (028A7556).jpg"
+  },
+  "driver-camara.webp": {
+    "author": "KVYTICAL",
+    "changes": "Оптимизация WebP",
+    "file": "driver-camara.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rafael_C%C3%A2mara_in_2022.jpg",
+    "title": "Rafael Câmara in 2022.jpg"
+  },
+  "driver-colapinto.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-colapinto.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Franco_Colapinto_at_the_Melbourne_Walk_during_the_2026_Australian_Grand_Prix_(028A8698)_cropped.jpg",
+    "title": "Franco Colapinto at the Melbourne Walk during the 2026 Australian Grand Prix (028A8698) cropped.jpg"
+  },
+  "driver-gasly.webp": {
+    "author": "Morio",
+    "changes": "Оптимизация WebP",
+    "file": "driver-gasly.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pierre_Gasly_2017_Malaysia.jpg",
+    "title": "Pierre Gasly 2017 Malaysia.jpg"
+  },
+  "driver-hadjar.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-hadjar.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Isack_Hadjar_at_the_Melbourne_Walk_during_the_2026_Australian_Grand_Prix_(028A8753)_(cropped).jpg",
+    "title": "Isack Hadjar at the Melbourne Walk during the 2026 Australian Grand Prix (028A8753) (cropped).jpg"
+  },
+  "driver-hamilton.webp": {
+    "author": "Liauzh",
+    "changes": "Оптимизация WebP",
+    "file": "driver-hamilton.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2025_Japan_GP_-_Ferrari_-_Lewis_Hamilton_-_Fanzone_Stage_(cropped).jpg",
+    "title": "2025 Japan GP - Ferrari - Lewis Hamilton - Fanzone Stage (cropped).jpg"
+  },
+  "driver-hulkenberg.webp": {
+    "author": "Marc Alvarado",
+    "changes": "Оптимизация WebP",
+    "file": "driver-hulkenberg.webp",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2019_Formula_One_tests_Barcelona,_Hulkenberg_(40287128313).jpg",
+    "title": "2019 Formula One tests Barcelona, Hulkenberg (40287128313).jpg"
+  },
+  "driver-lawson.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-lawson.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Liam_Lawson_at_the_Red_Bull_Fan_Zone_%E2%80%93_Crown_Riverwalk,_Melbourne_(028A7795).jpg",
+    "title": "Liam Lawson at the Red Bull Fan Zone – Crown Riverwalk, Melbourne (028A7795).jpg"
+  },
+  "driver-leclerc.webp": {
+    "author": "Gabriel Hutchinson",
+    "changes": "Оптимизация WebP",
+    "file": "driver-leclerc.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Charles_Leclerc_at_the_2026_Cannes_Film_Festival_(cropped).jpg",
+    "title": "Charles Leclerc at the 2026 Cannes Film Festival (cropped).jpg"
+  },
+  "driver-lindblad.webp": {
+    "author": "Yu Chu Chin",
+    "changes": "Оптимизация WebP",
+    "file": "driver-lindblad.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Arvid_Lindblad_at_the_Red_Bull_Fan_Zone_%E2%80%93_Crown_Riverwalk,_Melbourne_(028A7869)_(cropped).jpg",
+    "title": "Arvid Lindblad at the Red Bull Fan Zone – Crown Riverwalk, Melbourne (028A7869) (cropped).jpg"
+  },
+  "driver-norris.webp": {
+    "author": "Original:  Steffen Prößdorf; Derivative work:  Mb2437",
+    "changes": "Оптимизация WebP",
+    "file": "driver-norris.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2024-08-25_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3968_by_Stepro_(cropped2).jpg",
+    "title": "2024-08-25 Motorsport, Formel 1, Großer Preis der Niederlande 2024 STP 3968 by Stepro (cropped2).jpg"
+  },
+  "driver-perez.webp": {
+    "author": "XaviYuahanda",
+    "changes": "Оптимизация WebP",
+    "file": "driver-perez.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sergio_P%C3%A9rez_2019_(cropped).jpg",
+    "title": "Sergio Pérez 2019 (cropped).jpg"
+  },
+  "driver-piastri.webp": {
+    "author": "Liauzh",
+    "changes": "Оптимизация WebP",
+    "file": "driver-piastri.webp",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2026_Chinese_GP_-_Oscar_Piastri_(cropped)_(cropped).jpg",
+    "title": "2026 Chinese GP - Oscar Piastri (cropped) (cropped).jpg"
+  },
+  "driver-russell.webp": {
+    "author": "Raph_PH",
+    "changes": "Оптимизация WebP",
+    "file": "driver-russell.webp",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:KingsLeonSilverstne040724_(28_of_112)_(53838006028)_(cropped).jpg",
+    "title": "KingsLeonSilverstne040724 (28 of 112) (53838006028) (cropped).jpg"
+  },
+  "driver-sainz.webp": {
+    "author": "LucaFazPhoto",
+    "changes": "Оптимизация WebP",
+    "file": "driver-sainz.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Carlos_Sainz_at_the_83rd_Venice_FILM_festival-9_(cropped).jpg",
+    "title": "Carlos Sainz at the 83rd Venice FILM festival-9 (cropped).jpg"
+  },
+  "driver-stroll.webp": {
+    "author": "Liauzh",
+    "changes": "Оптимизация WebP",
+    "file": "driver-stroll.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2025_Japan_GP_-_Aston_Martin_-_Lance_Stroll_-_Fanzone_Stage_(cropped).jpg",
+    "title": "2025 Japan GP - Aston Martin - Lance Stroll - Fanzone Stage (cropped).jpg"
+  },
+  "driver-verstappen.webp": {
+    "author": "Steffen Prößdorf",
+    "changes": "Оптимизация WebP",
+    "file": "driver-verstappen.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2024-08-25_Motorsport,_Formel_1,_Gro%C3%9Fer_Preis_der_Niederlande_2024_STP_3973_by_Stepro_(medium_crop).jpg",
+    "title": "2024-08-25 Motorsport, Formel 1, Großer Preis der Niederlande 2024 STP 3973 by Stepro (medium crop).jpg"
+  },
+  "hero.webp": {
+    "author": "Liauzh",
+    "changes": "Оптимизация WebP",
+    "file": "hero.webp",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2026_Chinese_GP_-_Ferrari_-_Charles_Leclerc_-_FP1.jpg",
+    "title": "2026 Chinese GP - Ferrari - Charles Leclerc - FP1.jpg"
+  },
+  "logo-alpine.webp": {
+    "author": "Alpine F1 Team",
+    "changes": "Оптимизация WebP",
+    "file": "logo-alpine.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Alpine_F1_Team_Logo.svg",
+    "title": "Alpine F1 Team Logo.svg"
+  },
+  "logo-aston-martin.webp": {
+    "author": "Unknown authorUnknown author",
+    "changes": "Оптимизация WebP",
+    "file": "logo-aston-martin.webp",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aston_Martin_F1_Team_logo_2024.jpg",
+    "title": "Aston Martin F1 Team logo 2024.jpg"
+  },
+  "logo-audi.webp": {
+    "author": "Unknown authorUnknown author",
+    "changes": "Оптимизация WebP",
+    "file": "logo-audi.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Audi_logo_detail.svg",
+    "title": "Audi logo detail.svg"
+  },
+  "logo-cadillac.webp": {
+    "author": "TedNauru",
+    "changes": "Оптимизация WebP",
+    "file": "logo-cadillac.webp",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "source": "https://commons.wikimedia.org/wiki/File:Cadillac_Formula_1_Team_logo.png",
+    "title": "Cadillac Formula 1 Team logo.png"
+  },
+  "logo-ferrari.webp": {
+    "author": "Handelsgeselschaft",
+    "changes": "Оптимизация WebP",
+    "file": "logo-ferrari.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ferrari_logo_on_458_Speciale.jpg",
+    "title": "Ferrari logo on 458 Speciale.jpg"
+  },
+  "logo-haas.webp": {
+    "author": "Haas F1 Team",
+    "changes": "Оптимизация WebP",
+    "file": "logo-haas.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:TGR_Haas_F1_Team_Logo_(2026).svg",
+    "title": "TGR Haas F1 Team Logo (2026).svg"
+  },
+  "logo-mclaren.webp": {
+    "author": "McLaren",
+    "changes": "Оптимизация WebP",
+    "file": "logo-mclaren.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:McLaren_logo_(2026).svg",
+    "title": "McLaren logo (2026).svg"
+  },
+  "logo-mercedes.webp": {
+    "author": "Unknown authorUnknown author",
+    "changes": "Оптимизация WebP",
+    "file": "logo-mercedes.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_free_logo.svg",
+    "title": "Mercedes-Benz free logo.svg"
+  },
+  "logo-williams.webp": {
+    "author": "Williams Grand Prix Engineering Limited",
+    "changes": "Оптимизация WebP",
+    "file": "logo-williams.webp",
+    "license": "Public domain",
+    "licenseUrl": "",
+    "source": "https://commons.wikimedia.org/wiki/File:Williams_Racing_Logo_2024.webp",
+    "title": "Williams Racing Logo 2024.webp"
+  },
+  "warm-up-poster.webp": {
+    "author": "rubin16",
+    "changes": "Стоп-кадр и оптимизация WebP",
+    "file": "warm-up-poster.webp",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2021_Russian_Grand_Prix_-_start_for_warm-up.webm",
+    "title": "2021 Russian Grand Prix - start for warm-up.webm"
+  },
+  "warm-up.mp4": {
+    "author": "rubin16",
+    "changes": "Фрагмент 16 секунд, уменьшение и удаление звука",
+    "file": "warm-up.mp4",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:2021_Russian_Grand_Prix_-_start_for_warm-up.webm",
+    "title": "2021 Russian Grand Prix - start for warm-up.webm"
+  }
+}
